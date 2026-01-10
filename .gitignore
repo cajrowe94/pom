@@ -1,1 +1,19 @@
 .DS_Store
+
+# Godot 4+ specific ignores
+godot/pom/.godot/
+godot/pom/.nomedia
+
+# Godot-specific ignores
+godot/pom/.import/
+godot/pom/export.cfg
+godot/pom/export_credentials.cfg
+godot/pom/*.tmp
+
+# Imported translations (automatically generated from CSV files)
+godot/pom/*.translation
+
+# Mono-specific ignores
+godot/pom/.mono/
+godot/pom/data_*/
+godot/pom/mono_crash.*.json
