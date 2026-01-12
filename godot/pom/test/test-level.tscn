@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://rwfai4gwcp44"]
+
+[ext_resource type="PackedScene" uid="uid://msi3flhockn3" path="res://player/player.tscn" id="1_y3376"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_huiks"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_huiks"]
+size = Vector2(614, 32)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(77, 61)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+position = Vector2(378, 428)
+scale = Vector2(613.75, 31.749973)
+mesh = SubResource("QuadMesh_huiks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(378, 428)
+shape = SubResource("RectangleShape2D_huiks")
+
+[node name="Player" parent="." instance=ExtResource("1_y3376")]
+position = Vector2(292, 257)
