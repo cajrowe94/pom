@@ -9,6 +9,13 @@ size = Vector2(614, 32)
 
 [node name="TestLevel" type="Node2D"]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 133.0
+offset_top = 137.0
+offset_right = 806.0
+offset_bottom = 552.0
+color = Color(0, 0, 0, 1)
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(77, 61)
 

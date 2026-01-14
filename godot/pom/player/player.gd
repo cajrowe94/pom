@@ -18,14 +18,10 @@ func _physics_process(delta: float) -> void:
 	if !is_on_floor():
 		velocity.y += gravity
 		_animated_sprite.play("jump")
-		print('falling')
 	elif velocity.x == 0:
 		_animated_sprite.play("idle")
-		print('idling')
 	else:
-		#_animated_sprite.play("begin-run")
 		_animated_sprite.play("run")
-		print('running')
 		
 	if Input.is_action_just_pressed("player_jump") && is_on_floor():
 		velocity.y = -jump_strength
