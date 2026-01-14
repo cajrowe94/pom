@@ -1,32 +1,161 @@
-[gd_scene load_steps=4 format=3 uid="uid://rwfai4gwcp44"]
+[gd_scene load_steps=6 format=3 uid="uid://rwfai4gwcp44"]
 
 [ext_resource type="PackedScene" uid="uid://msi3flhockn3" path="res://player/player.tscn" id="1_y3376"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_huiks"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_huiks"]
-size = Vector2(614, 32)
+size = Vector2(602, 12)
+
+[sub_resource type="QuadMesh" id="QuadMesh_y3376"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3376"]
+size = Vector2(52, 9)
 
 [node name="TestLevel" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 133.0
-offset_top = 137.0
-offset_right = 806.0
-offset_bottom = 552.0
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 764.0
+offset_top = 530.0
+offset_right = 1035.0
+offset_bottom = 1198.0
 color = Color(0, 0, 0, 1)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(77, 61)
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 117.0
+offset_top = -132.0
+offset_right = 1035.0
+offset_bottom = 536.0
+color = Color(0, 0, 0, 1)
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
-position = Vector2(378, 428)
-scale = Vector2(613.75, 31.749973)
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(72, 63)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D2"]
+position = Vector2(372.0625, 418.06253)
+scale = Vector2(601.875, 11.875026)
 mesh = SubResource("QuadMesh_huiks")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(378, 428)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(372, 418)
 shape = SubResource("RectangleShape2D_huiks")
 
 [node name="Player" parent="." instance=ExtResource("1_y3376")]
 position = Vector2(292, 257)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+position = Vector2(794, 426.99997)
+scale = Vector2(-50.599625, 9.111661)
+mesh = SubResource("QuadMesh_y3376")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(794, 427)
+shape = SubResource("RectangleShape2D_y3376")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(88, -29)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D3"]
+position = Vector2(794, 426.99997)
+scale = Vector2(-50.599625, 9.111661)
+mesh = SubResource("QuadMesh_y3376")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(794, 427)
+shape = SubResource("RectangleShape2D_y3376")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(-26, -71)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D4"]
+position = Vector2(794, 426.99997)
+scale = Vector2(-50.599625, 9.111661)
+mesh = SubResource("QuadMesh_y3376")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(794, 427)
+shape = SubResource("RectangleShape2D_y3376")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(-133, -97)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D5"]
+position = Vector2(794, 426.99997)
+scale = Vector2(-50.599625, 9.111661)
+mesh = SubResource("QuadMesh_y3376")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(794, 427)
+shape = SubResource("RectangleShape2D_y3376")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(40, 201)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D6"]
+position = Vector2(794, 426.99997)
+scale = Vector2(-50.599625, 9.111661)
+mesh = SubResource("QuadMesh_y3376")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(794, 427)
+shape = SubResource("RectangleShape2D_y3376")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2(171, 453)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D7"]
+position = Vector2(794, 426.99997)
+scale = Vector2(-50.599625, 9.111661)
+mesh = SubResource("QuadMesh_y3376")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2(794, 427)
+shape = SubResource("RectangleShape2D_y3376")
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="."]
+position = Vector2(194, 27)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D8"]
+position = Vector2(794, 426.99997)
+scale = Vector2(-50.599625, 9.111661)
+mesh = SubResource("QuadMesh_y3376")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D8"]
+position = Vector2(794, 427)
+shape = SubResource("RectangleShape2D_y3376")
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="."]
+position = Vector2(537, 759)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D9"]
+position = Vector2(372.0625, 418.06253)
+scale = Vector2(601.875, 11.875026)
+mesh = SubResource("QuadMesh_huiks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9"]
+position = Vector2(372, 418)
+shape = SubResource("RectangleShape2D_huiks")
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="."]
+position = Vector2(689, -158)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D10"]
+position = Vector2(372.0625, 418.06253)
+scale = Vector2(601.875, 11.875026)
+mesh = SubResource("QuadMesh_huiks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D10"]
+position = Vector2(372, 418)
+shape = SubResource("RectangleShape2D_huiks")
