@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://msi3flhockn3"]
+[gd_scene load_steps=39 format=3 uid="uid://msi3flhockn3"]
 
 [ext_resource type="Texture2D" uid="uid://b4rljm6ccfbkt" path="res://sprites/player/idle/v1/player-idle1.png" id="1_knn7v"]
 [ext_resource type="Script" uid="uid://bvxvtmwegb5k8" path="res://player/player.gd" id="1_r7pn3"]
@@ -31,14 +31,12 @@
 [ext_resource type="Texture2D" uid="uid://d1ih2u48q3npl" path="res://sprites/player/jump/v2/jump-v5.png" id="25_gswnw"]
 [ext_resource type="Texture2D" uid="uid://3bdkoyu5bjwh" path="res://sprites/player/run/v1/player-run5.png" id="26_55jnj"]
 [ext_resource type="Texture2D" uid="uid://dl33pgf7xe61o" path="res://sprites/player/jump/v2/jump-v6.png" id="26_xcnuv"]
-[ext_resource type="Texture2D" uid="uid://50xidxgfdyyx" path="res://sprites/player/land/v1/land-v1.png" id="27_55jnj"]
 [ext_resource type="Texture2D" uid="uid://coj77ei0x20mu" path="res://sprites/player/run/v1/player-run6.png" id="27_dx5ib"]
 [ext_resource type="Texture2D" uid="uid://cbk3wqtdgcfre" path="res://sprites/player/run/v1/player-run7.png" id="28_a2xo5"]
 [ext_resource type="Texture2D" uid="uid://bkp3q2e8h2uxu" path="res://sprites/player/land/v1/land-v2.png" id="28_dx5ib"]
 [ext_resource type="Texture2D" uid="uid://ctyavw6c7whxu" path="res://sprites/player/land/v1/land-v3.png" id="29_a2xo5"]
 [ext_resource type="Texture2D" uid="uid://euqfms8l4jye" path="res://sprites/player/run/v1/player-run8.png" id="29_art4l"]
 [ext_resource type="Texture2D" uid="uid://cyirow24mtpd2" path="res://sprites/player/land/v1/land-v4.png" id="30_art4l"]
-[ext_resource type="Texture2D" uid="uid://dmtx8jdh7c3f7" path="res://sprites/player/land/v1/land-v5.png" id="31_fjxoa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fmu53"]
 animations = [{
@@ -96,7 +94,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("15_dx5ib")
 }],
-"loop": false,
+"loop": true,
 "name": &"fall",
 "speed": 5.0
 }, {
@@ -141,12 +139,9 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump",
-"speed": 7.0
+"speed": 8.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("27_55jnj")
-}, {
 "duration": 1.0,
 "texture": ExtResource("28_dx5ib")
 }, {
@@ -155,9 +150,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("30_art4l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("31_fjxoa")
 }],
 "loop": false,
 "name": &"land",
@@ -208,4 +200,4 @@ zoom = Vector2(3, 3)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_fmu53")
-animation = &"run"
+animation = &"land"

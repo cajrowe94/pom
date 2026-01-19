@@ -33,16 +33,18 @@ func _physics_process(delta: float) -> void:
 		handle_jump_key_press()
 	
 	if !is_on_floor():
-		if _animated_sprite.animation == "run":
+		if _animated_sprite.animation == "run": # player walked off ledge
 			_animated_sprite.play("jump")
 
 		var max_jump_boost_reached = jump_key_duration >= max_jump_boost
 		var max_jumps_reached = jump_count > max_jumps
-		# jump key duration determines height of jump
 		
+		# jump key duration determines height of jump
+		# this allows you to do short hops
 		if Input.is_action_pressed("player_jump") && !max_jump_boost_reached && !max_jumps_reached:
 			if jump_count == 1:
 				# first jump
+				_animated_sprite.play("jump")
 				player_jump(jump_key_duration)
 				jump_key_duration += 0.1
 			else:
@@ -51,8 +53,9 @@ func _physics_process(delta: float) -> void:
 					velocity.y = -jump_strength
 					has_initiated_double_jump = true
 				else:
-					player_double_jump(jump_key_duration)
-					jump_key_duration += 0.04
+					_animated_sprite.play("double_jump")
+					player_jump(jump_key_duration)
+					jump_key_duration += 0.04 # dbl jump is higher / longer than regular jump
 		else:
 			player_fall()
 	elif velocity.x != 0:
@@ -95,23 +98,11 @@ func reset_jump() -> void:
 
 # add gravity value to player y velocity
 func player_fall() -> void:
-	#_animated_sprite.play('fall')
 	velocity.y += gravity
-	#if _animated_sprite.animation != "double_jump":
 
 # subtract a value (float) from player's y velocity
 func player_jump(jump_val: float) -> void:
-	_animated_sprite.play("jump")
 	velocity.y -= jump_val
-
-# when player uses double jump ability
-func player_double_jump(jump_val: float) -> void:
-	_animated_sprite.play("double_jump")
-	velocity.y -= jump_val
-
-# when player is not moving on the x axis
-#func player_idle() -> void:
-	#_animated_sprite.play("idle")
 
 # when player is moving on the x axis
 func player_run() -> void:
