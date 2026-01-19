@@ -14,6 +14,10 @@ config/name="Pom"
 run/main_scene="uid://rwfai4gwcp44"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 player_move_left={
