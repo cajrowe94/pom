@@ -200,4 +200,4 @@ zoom = Vector2(3, 3)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_fmu53")
-animation = &"land"
+animation = &"idle"

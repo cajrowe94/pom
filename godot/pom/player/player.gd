@@ -2,24 +2,30 @@ extends CharacterBody2D
 
 @export var player_speed = 300
 @export var gravity = 30
+
+# jump variables
 @export var jump_strength = 700
 @export var max_jump_boost = 1.0
 @export var max_jumps = 2
-
-@onready var _animated_sprite = $AnimatedSprite2D
-
 var jump_key_duration = 0.0
 var jump_count = 0
 var has_initiated_double_jump = false
 
+# dash variables
+@export var dash_speed = 700
+@export var dash_cooldown = 30
+var dash_countdown = 0
+var dash_time = 0
+var is_dashing = false
+
+@onready var _animated_sprite = $AnimatedSprite2D
+
+var last_moving_dir = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_animated_sprite.connect("animation_finished", handle_animation_finished)
-	
-	if is_on_floor():
-		_animated_sprite.play("idle")
-	else:
-		_animated_sprite.play("fall")
+	handle_player_start_position()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -31,6 +37,8 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("player_jump"):
 		handle_jump_key_press()
+	
+	handle_dash()
 	
 	if !is_on_floor():
 		if _animated_sprite.animation == "run": # player walked off ledge
@@ -62,13 +70,20 @@ func _physics_process(delta: float) -> void:
 		_animated_sprite.play("run")
 	else:
 		_animated_sprite.play("idle")
-	
-	player_run()
+
+	if !is_dashing:
+		player_run()
+
 	move_and_slide()
+
+func handle_player_start_position() -> void:
+	if is_on_floor():
+		_animated_sprite.play("idle")
+	else:
+		_animated_sprite.play("fall")
 
 # animation_finished callback
 func handle_animation_finished() -> void:
-	print(_animated_sprite.animation)
 	match _animated_sprite.animation:
 		"jump", "fall":
 			if !is_on_floor():
@@ -76,8 +91,24 @@ func handle_animation_finished() -> void:
 		"double_jump":
 			if !is_on_floor():
 				_animated_sprite.play("jump")
-				
 			
+# manage dash variables	
+func handle_dash() -> void:
+	if Input.is_action_just_pressed("player_dash"):
+		handle_dash_key_press()
+
+	if dash_countdown > 0:
+		dash_countdown -= 1
+		
+	if dash_time > 0:
+		dash_time -= 1
+	else:
+		is_dashing = false
+
+# user presses dash key
+func handle_dash_key_press() -> void:
+	if dash_countdown == 0.0:
+		player_dash()
 
 # user presses jump key
 func handle_jump_key_press() -> void:
@@ -106,11 +137,27 @@ func player_jump(jump_val: float) -> void:
 
 # when player is moving on the x axis
 func player_run() -> void:
-	var horizontal_direction = Input.get_axis("player_move_left", "player_move_right")
+	var horizontal_dir = get_player_horizontal_dir()
 	
-	velocity.x = player_speed * horizontal_direction
+	velocity.x = player_speed * horizontal_dir
 	
-	if horizontal_direction < 0:
+	if horizontal_dir < 0:
 		_animated_sprite.flip_h = true;
-	elif horizontal_direction > 0:
+	elif horizontal_dir > 0:
 		_animated_sprite.flip_h = false;
+
+# move the player quickly along x axis
+func player_dash() -> void:
+	is_dashing = true
+	dash_time = 15
+	dash_countdown = dash_cooldown
+	velocity.x = dash_speed * last_moving_dir
+	
+
+func get_player_horizontal_dir() -> float:
+	var horizontal_dir = Input.get_axis("player_move_left", "player_move_right")
+	
+	if horizontal_dir != 0:
+		last_moving_dir = horizontal_dir
+	
+	return horizontal_dir
