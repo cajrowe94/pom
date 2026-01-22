@@ -1,9 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://msi3flhockn3"]
+[gd_scene load_steps=40 format=3 uid="uid://msi3flhockn3"]
 
 [ext_resource type="Texture2D" uid="uid://b4rljm6ccfbkt" path="res://sprites/player/idle/v1/player-idle1.png" id="1_knn7v"]
 [ext_resource type="Script" uid="uid://bvxvtmwegb5k8" path="res://player/player.gd" id="1_r7pn3"]
 [ext_resource type="Texture2D" uid="uid://dsrpaq73co1c7" path="res://sprites/player/idle/v1/player-idle2.png" id="2_7pqkx"]
 [ext_resource type="Texture2D" uid="uid://t6p30afq610o" path="res://sprites/player/double_jump/v1/double-jump1.png" id="2_ge24q"]
+[ext_resource type="Texture2D" uid="uid://ba5e35vhyb54v" path="res://sprites/player/dash/v1/dash-v2.png" id="3_a2xo5"]
 [ext_resource type="Texture2D" uid="uid://i6ix4dwkgwl5" path="res://sprites/player/double_jump/v1/double-jump2.png" id="3_pnw6m"]
 [ext_resource type="Texture2D" uid="uid://dgqfgxwp8qqao" path="res://sprites/player/idle/v1/player-idle3.png" id="3_uw77l"]
 [ext_resource type="Texture2D" uid="uid://yjohe2itjawr" path="res://sprites/player/double_jump/v1/double-jump3.png" id="4_1so5t"]
@@ -40,6 +41,23 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fmu53"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_a2xo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a2xo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a2xo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a2xo5")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_ge24q")
@@ -187,9 +205,6 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_r7pn3")
-player_speed = 200
-gravity = 25
-jump_strength = 200
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-12, -14, 11, -14, 11, 14, -12, 14)
@@ -200,4 +215,4 @@ zoom = Vector2(3, 3)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_fmu53")
-animation = &"idle"
+animation = &"dash"

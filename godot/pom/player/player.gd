@@ -1,19 +1,19 @@
 extends CharacterBody2D
 
-@export var player_speed = 300
-@export var gravity = 30
+var player_speed = 300
+var gravity = 30
 
 # jump variables
-@export var jump_strength = 700
-@export var max_jump_boost = 1.0
-@export var max_jumps = 2
+var jump_strength = 250
+var max_jump_boost = 1.0
+var max_jumps = 2
 var jump_key_duration = 0.0
 var jump_count = 0
 var has_initiated_double_jump = false
 
 # dash variables
-@export var dash_speed = 700
-@export var dash_cooldown = 30
+var dash_speed = 700
+var dash_cooldown = 30
 var dash_countdown = 0
 var dash_time = 0
 var is_dashing = false
@@ -66,6 +66,8 @@ func _physics_process(delta: float) -> void:
 					jump_key_duration += 0.04 # dbl jump is higher / longer than regular jump
 		else:
 			player_fall()
+	elif is_dashing:
+		_animated_sprite.play('dash')
 	elif velocity.x != 0:
 		_animated_sprite.play("run")
 	else:
@@ -85,7 +87,7 @@ func handle_player_start_position() -> void:
 # animation_finished callback
 func handle_animation_finished() -> void:
 	match _animated_sprite.animation:
-		"jump", "fall":
+		"jump", "fall", "dash":
 			if !is_on_floor():
 				_animated_sprite.play("fall")
 		"double_jump":
@@ -101,13 +103,17 @@ func handle_dash() -> void:
 		dash_countdown -= 1
 		
 	if dash_time > 0:
+		gravity = 0
+		velocity.y = 0
 		dash_time -= 1
+		_animated_sprite.play('dash')
 	else:
+		gravity = 30
 		is_dashing = false
 
 # user presses dash key
 func handle_dash_key_press() -> void:
-	if dash_countdown == 0.0:
+	if dash_countdown == 0:
 		player_dash()
 
 # user presses jump key
@@ -149,8 +155,8 @@ func player_run() -> void:
 # move the player quickly along x axis
 func player_dash() -> void:
 	is_dashing = true
-	dash_time = 15
-	dash_countdown = dash_cooldown
+	dash_time = 15 # how long the dash movement lasts
+	dash_countdown = dash_cooldown # time before player can dash again
 	velocity.x = dash_speed * last_moving_dir
 	
 
